@@ -35,10 +35,14 @@ jobs:
 
       - name: Bloquear lógica fora da camada de domínio (Regra 02)
         run: |
-          if grep -r "discount" src/ | grep -v "domain"; then
+          if grep -r "discount" src/ \
+            --exclude-dir=domain \
+            --exclude-dir=tests \
+            --exclude-dir=__pycache__ \
+            --exclude="*.pyc"; then
             echo "Violação: regra de desconto fora da camada de domínio"
             exit 1
           fi
 
       - name: Quality Gate aprovado
-        run: echo "Build aprovado — pronto para deploy 🚀"
+        run: echo "Build aprovado - pronto para deploy"
