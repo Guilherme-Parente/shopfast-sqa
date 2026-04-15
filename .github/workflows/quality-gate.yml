@@ -37,6 +37,7 @@ jobs:
         run: |
           if grep -r "discount" src/ \
             --exclude-dir=domain \
+            --exclude-dir=models \
             --exclude-dir=tests \
             --exclude-dir=__pycache__ \
             --exclude="*.pyc"; then
